@@ -7,21 +7,28 @@ import tensorflow as tf
 from keras.callbacks import Callback
 from keras.utils import to_categorical
 # from tensorflow.keras import layers, models
-from keras.optimizers import Adam
-# from tensorflow.keras.regularizers import l2
+from keras.optimizers import Adam, RMSprop
+from keras.regularizers import l1, l2, l1_l2
 from keras.models import Model
 from keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization, concatenate, AveragePooling2D
 from keras.callbacks import LambdaCallback
+from keras.layers import Activation, add
+from keras.callbacks import EarlyStopping
+from sklearn.metrics import classification_report
 # from keras.datasets import mnist
 # import numpy as np
 
 
 # ****** LIMITS & SEEDS ******
 
-TRAINING_SAMPLES = 5000  # int(sys.argv[1])
-TEST_SAMPLES = 100  # int(sys.argv[2])
+TRAINING_SAMPLES = 500_000  # int(sys.argv[1])
+TEST_SAMPLES = 50_000  # int(sys.argv[2])
 BATCH_SIZE = 16  # int(sys.argv[3])
 EPOCHS = 10  # int(sys.argv[4])
+
+L1_REG = 0.0001
+L2_REG = 0.0001
+L1_L2_REG = 0.0001
 
 np.random.seed(42)
 tf.random.set_seed(42)
@@ -59,21 +66,35 @@ test_labels = to_categorical(test_labels, num_classes=62)
 input_img = Input(shape=(28, 28, 1))
 
 # First conv block
-x = Conv2D(32, (3, 3), activation='relu', padding='same')(input_img)
+x = Conv2D(32, (3, 3), padding='same', kernel_regularizer=l1(
+    L1_REG), bias_regularizer=l2(L2_REG))(input_img)
 x = BatchNormalization()(x)
-x = Conv2D(32, (3, 3), activation='relu', padding='same')(x)
+x = Activation('relu')(x)
+x = Conv2D(32, (3, 3), padding='same')(x)
 x = BatchNormalization()(x)
-x = Conv2D(32, (3, 3), activation='relu', padding='same')(x)
+x = Activation('relu')(x)
+x = Conv2D(32, (3, 3), padding='same')(x)
 x = BatchNormalization()(x)
+x = Activation('relu')(x)
 x = MaxPooling2D((2, 2))(x)
 
 # Second conv block with residual connection
-y = Conv2D(64, (3, 3), activation='relu', padding='same')(x)
+y = Conv2D(64, (3, 3), padding='same')(x)
 y = BatchNormalization()(y)
-y = Conv2D(64, (3, 3), activation='relu', padding='same')(y)
+y = Activation('relu')(y)
+y = Conv2D(64, (3, 3), padding='same')(y)
 y = BatchNormalization()(y)
+y = Activation('relu')(y)
 
-# ## Inception Module
+# Match the channels for residual connection
+# Use 1x1 conv to increase channels from 32 to 64
+x_match = Conv2D(64, (1, 1), padding='same')(x)
+x_match = BatchNormalization()(x_match)
+
+# Actual Residual Connection
+y = add([y, x_match])
+
+# Inception Module
 tower_1 = Conv2D(64, (1, 1), padding='same', activation='relu')(y)
 tower_1 = Conv2D(64, (3, 3), padding='same', activation='relu')(tower_1)
 
@@ -91,24 +112,41 @@ y_2 = AveragePooling2D((2, 2))(y_2)
 
 # Fully connected layers
 z = Flatten()(y_2)
-z = Dense(128, activation='relu')(z)
+z = Dense(128, activation='relu', kernel_regularizer=l2(L2_REG), bias_regularizer=l2(L2_REG))(z)
 z = Dropout(0.5)(z)
-z = Dense(64, activation='relu')(z)
-z = Dropout(0.5)(z)
-output = Dense(62, activation='softmax')(z)  # Assuming 62 classes for EMNIST
+z = Dense(64, activation='relu', kernel_regularizer=l2(L2_REG), bias_regularizer=l2(L2_REG))(z)
+z = Dropout(0.4)(z)  # Slightly reduced dropout
+output = Dense(62, activation='softmax')(z)  # 62 classes for EMNIST
 
 # Create the model
 model = Model(inputs=input_img, outputs=output)
 
-optimizer = Adam(
+optimizer_adam = Adam(
     learning_rate=0.0005,
     beta_1=0.9,
     beta_2=0.999,
     epsilon=1e-08
 )
 
+optimizer_rmsprop = RMSprop(
+    learning_rate=0.00075,
+    rho=0.9,
+    momentum=0.0,
+    epsilon=1e-07,
+    centered=False,
+    name="RMSprop"
+)
+
+# Initialize the early stopping callback
+early_stopping = EarlyStopping(
+    monitor='val_loss',  # Monitor validation loss
+    patience=3,          # Number of epochs with no improvement to wait before stopping
+    restore_best_weights=True  # Restore the best weights when stopped
+)
+
+
 # Compile the model
-model.compile(optimizer=optimizer,
+model.compile(optimizer=optimizer_rmsprop,
               loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Create a callback to print the loss and accuracy after each epoch
@@ -121,7 +159,7 @@ print_callback = LambdaCallback(on_epoch_end=lambda epoch, logs: print(
 try:
     # Train the model
     model.fit(train_images, train_labels, epochs=EPOCHS,
-              batch_size=BATCH_SIZE, callbacks=[print_callback])
+              batch_size=BATCH_SIZE, callbacks=[print_callback, early_stopping], validation_data=(test_images, test_labels))
 except KeyboardInterrupt:
     print("Training has been stopped early!")
     exit()
@@ -134,6 +172,20 @@ except Exception as e:
 # Evaluate the model
 test_loss, test_accuracy = model.evaluate(test_images, test_labels)
 print(f"Test accuracy: {test_accuracy}")
+
+test_loss, test_accuracy = model.evaluate(test_images, test_labels)
+print(f"Test accuracy: {test_accuracy}")
+
+# Predict classes using the test set
+y_pred = model.predict(test_images, batch_size=16, verbose=1)
+y_pred_bool = np.argmax(y_pred, axis=1)
+
+# Convert one-hot encoded test_labels to single labels
+y_test_single_label = np.argmax(test_labels, axis=1)
+
+# Print classification report
+print("Classification Report:")
+print(classification_report(y_test_single_label, y_pred_bool))
 
 # Save the model (optional)
 # model.save("emnist_model.h5")
