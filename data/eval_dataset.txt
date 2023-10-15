@@ -1,0 +1,383 @@
+        "Leider kann ich dir kein Lied vorspielen. Aber ich kann dir dabei helfen, deine Lieblingsmusik zu finden.",
+       "Es gibt viele Optionen für ein gesundes Abendessen. Vielleicht kannst du dich von einem Kochbuch oder einer Rezeptseite inspirieren lassen.",
+       "Was sagt ein Zahnarzt, wenn er einen Witz erzählt? Klammer dich fest, das wird lustig!",
+ {
+       "Guten Morgen",
+       "Ich kann dir leider nicht sagen, wie viel Zeit du noch hast. Aber du kannst die Uhrzeit im Auge behalten oder einen Timer verwenden."
+    },
+       "Na, was gibt's?",
+  "patterns":[
+        "Tschüssi",
+      "responses": [
+        "Bis später! Mach's gut.",
+    "responses":[
+    "tag": "Reisen",
+      "responses": [
+        "Kannst du mir ein Lied vorspielen?",
+    "context_set":""
+    "context_set":""
+      "context_set": ""
+    "context_set":""
+    "context_set":""
+      "patterns": [
+       "Warum haben alle Mathematiker einen Garten? - Damit sie ihre Wurzeln ziehen können.",
+        "Bis dahin!",
+        "Zeig mir lustige Katzenbilder!",
+    "responses":[
+      "responses": [
+        "Adios! Hasta la vista.",
+        "Na, was gibt's?",
+       "Welche Kleidung ist bei Regen geeignet?"
+        "Auf Wiedersehen",
+    ],
+        "Bist du lustig?",
+      "responses": [
+      ],
+       "Ich wurde erst vor kurzem programmiert und arbeite seitdem als Chatbot. Wie kann ich dir heute helfen?",
+       "Tschö mit ö! Bis zum nächsten Mal.",
+    "context_set":""
+    "patterns":[
+      "context_set": ""
+    ],
+        "Einen guten Abend noch",
+    "tag":"Smalltalk_positive_Antworten_Zustand_Usr",
+        "Kannst du mir dabei helfen?",
+        "Reisen ist für mich nicht möglich, aber ich kann gerne über verschiedene Orte und Kulturen sprechen.",
+        "Wie fühlst du dich heute?",
+      "responses": [
+       "Gleichfalls",
+       "Was macht man, wenn man einen Raum voller Informatiker betritt? - Man öffnet das Fenster, damit der Code raus kann.",
+        "Wie ist deine Stimmung?",
+       "Ich weiß nicht, was ich tun soll"
+    },
+       "Es reicht schon, dass du dich bedankst. Ich bin hier, um zu helfen."
+        "Ich kenne dein Alter nicht, aber du kannst es mir gerne verraten."
+    "tag":"Zustand_Wie_war_dein_Tag",
+       "Eine bessere Verwaltung Ihrer Finanzen kann durch das Verfolgen Ihrer Ausgaben, das Erstellen von Budgets und das Planen für langfristige finanzielle Ziele erreicht werden."
+      "Hast du technische Tipps?",
+    "tag":"Zustand_Wie_gehts_heute",
+ },
+      "context_set": ""
+ {
+       "Bis bald! Wir hören voneinander.",
+        "Bis dann! Pass auf dich auf.",
+ },
+    "patterns":[
+       "Wie lief dein Tag?",
+        "Einen schönen Tag noch",
+        "Da ich ein Computerprogramm bin, habe ich keine Filmvorlieben, aber ich kann dir bei der Suche nach Filmen und Serien helfen."
+    "patterns":[
+      "context_set": ""
+    ],
+       "Alles klar?",
+      "patterns": ["Hurensohn", "Fick dich", "Halt dein Maul", "Verpiss dich", "Deine Mutter", "Hure", "Nutensohn", "Schlampe"],
+    "context_set":""
+    "responses":[
+       "Ich habe keine Vorlieben oder Geschmäcker, da ich eine KI-basierte Chat-Anwendung bin. Aber ich kann dir helfen, gute Restaurants oder Gerichte zu finden, die deinem Geschmack entsprechen. Was isst du am liebsten?",
+       "Woher kommst du?",
+ },
+        "Gemeinsam können wir einen Weg aus dieser Situation finden.",
+        "Bis zum nächsten Mal und viel Spaß!",
+       "Guten Abend! Wie war dein Tag?",
+      ],
+        "Wann ist der nächste Feiertag?",
+       "Es läuft nicht so gut bei mir",
+      "Hast du schon einmal gereist?",
+        "Wie spät ist es?",
+       "Wo befindest du dich?",
+        "Baba",
+    "patterns":[
+        "Bis später dann! Halt die Ohren steif.",
+    "patterns":[
+ {
+        "Wie viel Zeit bleibt mir noch?",
+    "patterns":[
+        "Einen guten Abend noch! Bis zum nächsten Mal.",
+        "Ich bin hier, um dir den Weg zu zeigen. Welches Thema interessiert dich?",
+       "Kannst du mir ein Bild oder Video zeigen?",
+      "Ich mag Serien, besonders Science-Fiction-Serien wie 'Black Mirror' und 'Stranger Things'.",
+       "Heute ist [CURRENT_DATE]."
+    "patterns":[
+ },
+        "Machs gut und bis bald! Wir sehen uns.",
+       "Bis bald und alles Gute",
+    "context_set":""
+        "Kannst du einen guten Film empfehlen?",
+       "Nachhaltige Verhaltensweisen sind Verhaltensweisen, die langfristig umsetzbar sind und keine oder nur minimale Auswirkungen auf die Umwelt haben. Beispiele sind energiesparende Geräte, regelmäßige Wartung von Fahrzeugen und das Vermeiden von Plastik- und Einwegartikeln."
+        "Filme sind für mich interessant, ich kann dir gerne Filmtipps geben!",
+      ],
+    ],
+ },
+    "patterns":[
+      "context_set": ""
+    ],
+       "Jeder Mensch hat eine kreative Seite. Es geht darum, sie zu entdecken und zu fördern.",
+      "patterns": [
+       "Nein, ich bin nicht müde. Wie kann ich dir helfen?",
+       "Was ist Selbstfürsorge?",
+       "Einen schönen Abend noch und bis zum nächsten Mal!",
+      "patterns": [
+        "Magst du Technologie?",
+      ],
+        "Ich fühle mich hilflos",
+ },
+       "Die Verbesserung der Ernährung kann durch den Verzehr von mehr Obst und Gemüse, Vollkornprodukten, magerem Protein und gesunden Fetten erreicht werden. Es ist auch wichtig, zuckerhaltige Getränke und verarbeitete Lebensmittel zu vermeiden."
+    "context_set":""
+        "Hallo"
+    "context_set":""
+       "Wie geht es heute?",
+       "Wie siehst du mich?",
+    ],
+        "Bis später",
+    "patterns":[
+      "patterns": [
+        "Ich bin ein Computerprogramm, also habe ich keine Emotionen, aber ich bin bereit, deine Fragen zu beantworten.",
+        "Nein, ich kann keine Bilder oder Videos zeigen. Aber ich kann dir dabei helfen, welche zu finden.",
+ {
+       "Wie kann ich meine körperliche und geistige Gesundheit verbessern?",
+        "Wie lange dauert es noch?",
+        "Okay, verstehe. Danke, dass du mir dein Alter mitgeteilt hast!"
+ },
+       "Adios! Hasta la vista.",
+    "tag":"Hilfe_Anleitung",
+       "Machs gut und bis bald",
+       "Was ist deine Meinung zu KI?",
+      "context_set": ""
+       "Wie kann ich meine Finanzen besser verwalten?"
+    ],
+      "Was tust du für deine Gesundheit?",
+    "tag":"Kunst",
+      "Hast du einen Lieblingssport?",
+       "Ich kenne dich nicht persönlich, aber ich bin immer bereit, dir bei Fragen und Problemen zu helfen. Was benötigst du heute von mir?",
+    {
+        "Ich kann dir leider nicht sagen, wie viel Zeit du noch hast. Aber du kannst die Uhrzeit im Auge behalten oder einen Timer verwenden."
+        "Kannst du Humor verstehen?",
+       "Was sind die Auswirkungen des Klimawandels?",
+        "Wann ist Ostern?"
+        "Tschöss!",
+        "Kannst du das Problem für mich lösen?",
+ },
+ {
+       "Künstliche Intelligenz ist eine Technologie, die es Computern ermöglicht, menschenähnliche Aufgaben wie Spracherkennung, Bilderkennung und Entscheidungsfindung auszuführen.",
+       "Wie fühlst du dich heute?"
+       "Wann ist es vorbei?"
+    "context_set":""
+        "Wie kann ich dir danken?",
+       "Tag auch!",
+    },
+       "Leider kann ich dir kein Lied vorspielen. Aber ich kann dir dabei helfen, deine Lieblingsmusik zu finden."
+       "Das freut mich zu hören",
+       "Denkst du, dass KI irgendwann menschliche Intelligenz erreichen wird?"
+ },
+    ],
+       "Alles gut?",
+       "Kannst du mir erklären, wie es funktioniert?",
+      "patterns": [
+      "tag": "Zustand",
+        "Mach's gut und bis zum nächsten Mal!",
+        "Hast du Freizeitinteressen?",
+    "context_set":""
+    {
+       "Welche Fähigkeiten hast du?",
+        "Wir werden gemeinsam einen Weg aus dieser Situation finden. Wo möchtest du anfangen?",
+       "Wie lange arbeitest du schon?",
+      "context_set": ""
+        "Ich habe keinen Tag oder Zeit, da ich eine KI bin, aber ich bin hier, um dir zu helfen. Wie kann ich heute unterstützen?",
+ {
+      "responses": [
+        "Danke für deine Zeit",
+       "Die Erreichung von Zielen erfordert oft ein klares Verständnis der Ziele, eine realistische Planung, regelmäßige Überprüfung und Anpassung der Fortschritte und eine konsequente Umsetzung.",
+       "Hallo!",
+    "context_set":""
+       "Wir hören voneinander",
+        "Bis zum nächsten Mal und vielen Dank für dein Engagement.",
+       "Wie finde ich den richtigen Job?",
+    "patterns":[
+      "context_set": ""
+        "Ja, ich kann Witze erzählen. Aber Humor zu verstehen, ist manchmal schwierig für mich.",
+    {
+       "Was kann ich für dich tun?"
+ {
+      "patterns": [
+  },
+       "Was isst du am liebsten?"
+      "Stressmanagement ist entscheidend. Versuche Atemübungen, Yoga oder Meditation, um Stress abzubauen.",
+       "Warum hat die Tomate so viele Probleme? - Weil sie immer rot wird.",
+        "Na, was gibt's, was ist los?",
+       "Die Erhöhung des Einkommens kann durch die Suche nach höher bezahlten Jobs, die Übernahme von Nebenjobs oder die Gründung eines eigenen Unternehmens erreicht werden.",
+    "patterns":[
+      "tag": "Hilfe",
+        "Moin",
+       "Hattest du einen guten Tag?"
+      "Es gibt großartige Dokumentarfilme, die verschiedene Themen abdecken. 'Planet Earth' ist eine beeindruckende Naturdokumentation."
+       "Mein Name ist NGBot, aber du kannst mich gerne einfach Chatbot nennen.",
+       "Natürlich kann ich dir helfen. Aber das Problem musst du selbst lösen."
+      "tag": "Hilfe",
+    "patterns":[
+        "Schönen Abend noch",
+      "tag": "Alter",
+       "Was passiert, wenn man eine Katze mit einem Hund kreuzt? Man bekommt eine Katze, die glaubt, sie sei ein Hund!",
+    "tag":"Beziehungen",
+       "Bis zum nächsten Mal und viel Spaß",
+    "tag":"Fähigkeiten_Bilder_Vidios",
+    ],
+        "Kein Problem, ich kann dir Orientierung bieten. Worum geht es?",
+ },
+        "Kannst du Bilder oder Videos zeigen?",
+    "tag":"Zustand_Stress",
+    "responses":[
+        "Welche Küche magst du?",
+        "Schönen Tag noch! Bis zum nächsten Mal.",
+       "Als KI-basierte Chat-Anwendung habe ich keine persönlichen Vorlieben. Aber ich kann dir helfen, gute Filme oder Serien zu finden, die deinem Geschmack entsprechen. Was für ein Genre bevorzugst du?",
+        "Keine Sorge, wir schaffen das zusammen. Was ist das Problem?",
+       "Bis zum nächsten Mal und vielen Dank für dein Engagement"
+    "responses":[
+       "Na, wie geht's?",
+        "Kannst du mir eine Regenjacke empfehlen?",
+       "Baba! Bis zum nächsten Mal.",
+    "context_set":""
+        "Guten Tag",
+       "Einen guten Tag noch",
+ {
+        "Bis zum nächsten Mal und vielen Dank! Auf Wiedersehen.",
+    "responses":[
+       "Servus!",
+    "patterns":[
+        "Da ich keine physische Existenz habe, kann ich nichts essen, aber ich kann dir gerne Rezepte und Kochtipps anbieten.",
+        "Welche Reiseziele magst du?",
+       "Was für Musik magst du?",
+      "Was hältst du von Meditation?"
+       "Danke, es tut gut zu hören.",
+        "Wann wird es aufhören zu regnen?",
+    ],
+       "Um die Umwelt zu schützen, kann man sich für den Schutz von natürlichen Ressourcen und Tierarten einsetzen, an Aktionen und Demonstrationen teilnehmen und politisch aktiv werden.",
+       "Hallo allerseits!",
+        "Verstehe, das kann manchmal verwirrend sein. Wie kann ich assistieren?",
+        "Ich bin gerade etwas überfordert, könntest du übernehmen?",
+      "responses": [
+        "Mir geht es gut, danke! Wie geht es dir?",
+    "tag":"Zeit_aktuell",
+       "Wie kann ich negative Gedanken loswerden?"
+      "Mein bevorzugtes Filmgenre ist Science-Fiction, aber ich schaue gerne Filme aus verschiedenen Genres.",
+       "Servus",
+      ],
+        "Na, wie geht's, wie läuft's?",
+      "tag": "Zeit",
+       "Bis zum nächsten Mal und viel Glück!",
+    },
+        "Kannst du mir helfen, die Situation zu entwirren?",
+       "Das Budgetieren von Reisen kann durch die Verwendung von Reiseplanern und durch die Suche nach günstigen Flügen und Unterkünften erleichtert werden. Es ist auch wichtig, ein Budget für Essen, Transport und Freizeitaktivitäten festzulegen."
+    {
+    "tag":"Ursprung_KI",
+       "Wie groß bist du?",
+    "responses":[
+    "context_set":""
+    ],
+       "Tschüssi",
+      "responses": ["Guten Morgen! Wie kann ich dir helfen?","Moin! Wie geht's dir?","Guten Tag! Was kann ich für dich tun?","Hallo! Wie kann ich dir helfen?","Guten Abend! Wie war dein Tag?","Gute Nacht! Bis bald."],
+        "Ich persönlich mag keine Musik, aber ich kann dir gerne Empfehlungen basierend auf deinen Vorlieben geben."
+    ],
+        "Tschüss! Bis zum nächsten Mal.",
+        "Du bist nicht alleine mit dieser Herausforderung. Lass uns damit umgehen.",
+       "Als Chatbot habe ich keinen Lieblingsfilm oder keine bevorzugten Genres, da ich ein Computerprogramm bin. Aber ich kann dir helfen, einen Film oder eine Serie zu finden, die deinen Vorlieben entspricht. Was für ein Genre bevorzugst du?"
+    "context_set":""
+    "patterns": [
+        "Tschöss!",
+    ],
+      "Was ist deine Meinung zu künstlicher Intelligenz?",
+    "context_set":""
+        "Welcher Tag ist heute?"
+       "Wie kann ich meine Kreativität verbessern?",
+    "patterns": [
+    "context_set":""
+ {
+        "Was sind deine Hobbys?",
+    {
+        "Halt die Ohren steif",
+       "Wie kann ich mein Einkommen erhöhen?",
+       "Ich kann dir dabei helfen, aber ich kann das Problem nicht für dich lösen. Gemeinsam finden wir eine Lösung.",
+      "patterns": [
+    ],
+      ],
+    "tag":"Smalltalk_Essen",
+        "Servus!",
+    "context_set":""
+        "Bis bald",
+       "Wie kann ich mich beruflich weiterentwickeln?"
+    ],
+       "Wie kann ich meine Zeit effektiver planen?"
+      "Was sind deine Lieblings-Apps?",
+       "Wie weiß ich, ob ich die richtige Person gefunden habe?"
+ {
+    "responses":[
+       "Bis gleich! Pass auf dich auf.",
+    ],
+    ],
+        "Kannst du mir helfen?",
+       "Hallo",
+    {
+ {
+    ],
+        "Dein Vertrauen in meine Unterstützung bedeutet viel. Lass uns den Weg gemeinsam finden."
+      "Einer der wichtigsten Gesundheitstipps ist, gut auf deine mentale Gesundheit zu achten. Entspannung und Stressabbau sind entscheidend.",
+      "context_set": ""
+       "Einen schönen Tag noch und bis bald!",
+        "Wiedersehen",
+       "Kein Problem, ich erkläre es dir gerne. Was genau verwirrt dich?"
+    ],
+    "responses":[
+    ],
+       "Ich verstehe nicht"
+    "responses":[
+       "Guten Tag",
+       "Ich habe keine Informationen über die aktuelle Temperatur. Schau doch mal im Internet nach.",
+      ],
+        "Da ich ein AI-Modell bin, habe ich keine Hobbys, aber ich kann gerne über deine Hobbys sprechen oder dir bei Fragen dazu helfen.",
+    "tag":"Smalltalk_DeinHobbys",
+       "Ich kenne dein Alter nicht, aber du kannst es mir gerne verraten."
+       "Was ist dein Lieblingsgenre?",
+       "Einen schönen Abend noch und bis zum nächsten Mal",
+        "Wie alt?",
+ },
+    },
+       "Ich brauche eine Anleitung",
+       "Ich bin froh, dass ich dir helfen konnte."
+    "responses":[
+  },
+       "Wie groß bist du eigentlich?",
+       "Wie jung bist du?",
+ {
+        "Hast du einen Ratschlag für mich?",
+        "Mir geht es heute großartig. Wie geht es dir?",
+    "context_set":""
+    {
+        "Danke für deine Hilfe",
+ {
+    "context_set":""
+      "responses": [
+    ],
+    "tag":"Smalltalk_Sinne",
+       "Hast du noch einen Witz für mich?",
+        "Mach's gut und bis zum nächsten Mal!",
+    "patterns":[
+ {
+       "Was ist künstliche Intelligenz?",
+       "Wie lange existierst du schon?",
+      {
+        "Wir hören voneinander! Bis bald mal wieder.",
+        "Tschüssi!",
+ },
+    {
+    "patterns":[
+        "Bis gleich",
+       "Schönen Abend noch",
+    ],
+       "Wie können Menschen von Kunst profitieren?",
+    "responses":[
+       "Bis bald mal wieder! Mach's gut.",
+        "Hattest du eine gute Zeit heute?",
+    "tag":"Smalltalk_positive_Antworten_Zustand",
+        "Ich kann dir dabei helfen, aber ich kann das Problem nicht für dich lösen. Gemeinsam finden wir eine Lösung.",
+        "Bis zur nächsten Gelegenheit",
+    "patterns":[
+     "Welcher Tag ist heute?"
