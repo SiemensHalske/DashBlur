@@ -1,35 +1,50 @@
 # ****** IMPORTS ******
+
+# Standard Libraries
 import os
-import numpy as np
 import sys
+import numpy as np
+
+# EMNIST Dataset
 import emnist
+
+# TensorFlow and Keras
 import tensorflow as tf
-from keras.callbacks import Callback
+from keras.preprocessing.image import ImageDataGenerator
 from keras.utils import to_categorical
-# from tensorflow.keras import layers, models
-from keras.optimizers import Adam, RMSprop
-from keras.regularizers import l1, l2, l1_l2
-from keras.models import Model
-from keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization, concatenate, AveragePooling2D
-from keras.callbacks import LambdaCallback
-from keras.layers import Activation, add
-from keras.callbacks import EarlyStopping
+
+from keras import (
+    Model, Input
+)
+from keras.layers import (
+    Conv2D, MaxPooling2D, Flatten, Dense, Dropout,
+    BatchNormalization, concatenate, AveragePooling2D,
+    Activation, add
+)
+from keras.optimizers import (
+    Adam, RMSprop
+)
+from keras.regularizers import (
+    l1, l2, l1_l2
+)
+from keras.callbacks import (
+    Callback, LambdaCallback, EarlyStopping, ReduceLROnPlateau, LearningRateScheduler
+)
+
+# Scikit-learn
 from sklearn.metrics import classification_report
-from keras.callbacks import ReduceLROnPlateau, LearningRateScheduler
-# from keras.datasets import mnist
-# import numpy as np
 
 
 # ****** LIMITS & SEEDS ******
 
-TRAINING_SAMPLES = 100_000  # int(sys.argv[1])
-TEST_SAMPLES = 10_000  # int(sys.argv[2])
-BATCH_SIZE = 16  # int(sys.argv[3])
-EPOCHS = 100  # int(sys.argv[4])
+TRAINING_SAMPLES = 100000  # int(sys.argv[1])
+TEST_SAMPLES = 5000  # int(sys.argv[2])
+BATCH_SIZE = 32  # int(sys.argv[3])
+EPOCHS = 20  # int(sys.argv[4])
 
-L1_REG = 0.0025
-L2_REG = 0.0025
-L1_L2_REG = 0.001
+L1_REG = 0.001
+L2_REG = 0.001
+L1_L2_REG = 0.005
 
 np.random.seed(42)
 tf.random.set_seed(42)
@@ -48,7 +63,7 @@ def schedule(epoch, lr):
     if epoch < 10:
         return lr
     else:
-        return lr * 0.9
+        return lr * tf.math.exp(-0.1)
 
 
 # Load EMNIST data
@@ -75,8 +90,8 @@ test_labels = to_categorical(test_labels, num_classes=62)
 input_img = Input(shape=(28, 28, 1))
 
 # First conv block
-x = Conv2D(32, (3, 3), padding='same', kernel_regularizer=l1(
-    L1_REG), bias_regularizer=l2(L2_REG))(input_img)
+x = Conv2D(32, (3, 3), padding='same', kernel_regularizer=l2(
+    L1_REG), bias_regularizer=l1_l2(L1_L2_REG))(input_img)
 x = BatchNormalization()(x)
 x = Activation('relu')(x)
 x = Conv2D(32, (3, 3), padding='same', kernel_regularizer=l1(
@@ -152,11 +167,21 @@ optimizer_rmsprop = RMSprop(
     name="RMSprop"
 )
 
+datagen = ImageDataGenerator(
+    rotation_range=40,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    fill_mode="nearest"
+)
+
 # Initialize the early stopping callback
 early_stopping = EarlyStopping(
-    monitor='val_accuracy',  # Monitor validation accuracy
-    patience=1,          # Number of epochs with no improvement to wait before stopping
-    restore_best_weights=True  # Restore the best weights when stopped
+    monitor='val_loss',  # Monitor validation accuracy
+    patience=3,          # Number of epochs with no improvement to wait before stopping
+    restore_best_weights=False  # Restore the best weights when stopped
 )
 
 # Initialize the ReduceLROnPlateau callback
@@ -165,7 +190,6 @@ reduce_lr = ReduceLROnPlateau(
 
 # Initialize the LearningRateScheduler callback
 lr_scheduler = LearningRateScheduler(schedule, verbose=1)
-
 
 
 # Compile the model
@@ -197,6 +221,8 @@ except Exception as e:
 # Evaluate the model
 test_loss, test_accuracy = model.evaluate(test_images, test_labels)
 print(f"Test accuracy: {test_accuracy}")
+summary = model.summary()
+print(summary)
 
 # Predict classes using the test set
 y_pred = model.predict(test_images, batch_size=16, verbose=1)
@@ -210,4 +236,5 @@ print("Classification Report:")
 print(classification_report(y_test_single_label, y_pred_bool))
 
 # Save the model (optional)
-# model.save("emnist_model.h5")
+save_path = "/home/hendrik/Documents/Projects/DashBlur/src/"
+model.save(save_path + "emnist_model.h5")
