@@ -22,13 +22,13 @@ from keras.callbacks import ReduceLROnPlateau, LearningRateScheduler
 
 # ****** LIMITS & SEEDS ******
 
-TRAINING_SAMPLES = 1000  # int(sys.argv[1])
-TEST_SAMPLES = 100  # int(sys.argv[2])
-BATCH_SIZE = 2  # int(sys.argv[3])
+TRAINING_SAMPLES = 100_000  # int(sys.argv[1])
+TEST_SAMPLES = 10_000  # int(sys.argv[2])
+BATCH_SIZE = 16  # int(sys.argv[3])
 EPOCHS = 100  # int(sys.argv[4])
 
-L1_REG = 0.001
-L2_REG = 0.001
+L1_REG = 0.0025
+L2_REG = 0.0025
 L1_L2_REG = 0.001
 
 np.random.seed(42)
@@ -79,19 +79,23 @@ x = Conv2D(32, (3, 3), padding='same', kernel_regularizer=l1(
     L1_REG), bias_regularizer=l2(L2_REG))(input_img)
 x = BatchNormalization()(x)
 x = Activation('relu')(x)
-x = Conv2D(32, (3, 3), padding='same')(x)
+x = Conv2D(32, (3, 3), padding='same', kernel_regularizer=l1(
+    L1_REG), bias_regularizer=l1(L2_REG))(x)
 x = BatchNormalization()(x)
 x = Activation('relu')(x)
-x = Conv2D(32, (3, 3), padding='same')(x)
+x = Conv2D(32, (3, 3), padding='same', kernel_regularizer=l1(
+    L1_REG), bias_regularizer=l1(L2_REG))(x)
 x = BatchNormalization()(x)
 x = Activation('relu')(x)
 x = MaxPooling2D((2, 2))(x)
 
 # Second conv block with residual connection
-y = Conv2D(64, (3, 3), padding='same')(x)
+y = Conv2D(128, (3, 3), padding='same', kernel_regularizer=l1(
+    L1_REG), bias_regularizer=l2(L2_REG))(x)
 y = BatchNormalization()(y)
 y = Activation('relu')(y)
-y = Conv2D(64, (3, 3), padding='same')(y)
+y = Conv2D(128, (3, 3), padding='same', kernel_regularizer=l1(
+    L1_REG), bias_regularizer=l2(L2_REG))(y)
 y = BatchNormalization()(y)
 y = Activation('relu')(y)
 
@@ -101,19 +105,19 @@ x_match = Conv2D(64, (1, 1), padding='same')(x)
 x_match = BatchNormalization()(x_match)
 
 # Actual Residual Connection
-y = add([y, x_match])
+# y = add([y, x_match])
 
 # Inception Module
-tower_1 = Conv2D(64, (1, 1), padding='same', activation='relu')(y)
-tower_1 = Conv2D(64, (3, 3), padding='same', activation='relu')(tower_1)
+tower_1 = Conv2D(256, (1, 1), padding='same', activation='relu')(y)
+tower_1 = Conv2D(256, (3, 3), padding='same', activation='relu')(tower_1)
 
-tower_2 = Conv2D(64, (1, 1), padding='same', activation='relu')(y)
-tower_2 = Conv2D(64, (5, 5), padding='same', activation='relu')(tower_2)
+tower_2 = Conv2D(256, (1, 1), padding='same', activation='relu')(y)
+tower_2 = Conv2D(256, (5, 5), padding='same', activation='relu')(tower_2)
 
 tower_3 = MaxPooling2D((3, 3), strides=(1, 1), padding='same')(y)
-tower_3 = Conv2D(64, (1, 1), padding='same', activation='relu')(tower_3)
+tower_3 = Conv2D(128, (1, 1), padding='same', activation='relu')(tower_3)
 
-tower_4 = Conv2D(64, (1, 1), padding='same', activation='relu')(y)
+tower_4 = Conv2D(128, (1, 1), padding='same', activation='relu')(y)
 
 y_2 = concatenate([tower_1, tower_2, tower_3, tower_4], axis=3)
 y_2 = BatchNormalization()(y_2)
@@ -140,9 +144,9 @@ optimizer_adam = Adam(
 )
 
 optimizer_rmsprop = RMSprop(
-    learning_rate=0.0001,
+    learning_rate=0.0005,
     rho=0.9,
-    momentum=0.0,
+    momentum=0.9,
     epsilon=1e-07,
     centered=False,
     name="RMSprop"
@@ -157,7 +161,7 @@ early_stopping = EarlyStopping(
 
 # Initialize the ReduceLROnPlateau callback
 reduce_lr = ReduceLROnPlateau(
-    monitor='val_loss', factor=0.1, patience=3, verbose=1)
+    monitor='val_loss', factor=0.1, patience=2, verbose=1)
 
 # Initialize the LearningRateScheduler callback
 lr_scheduler = LearningRateScheduler(schedule, verbose=1)
@@ -179,7 +183,7 @@ try:
     # Train the model
     model.fit(train_images, train_labels, epochs=EPOCHS,
               batch_size=BATCH_SIZE,
-              callbacks=[print_callback, early_stopping, lr_scheduler],
+              callbacks=[print_callback, early_stopping],
               validation_data=(test_images, test_labels))
 except KeyboardInterrupt:
     print("Training has been stopped early!")
