@@ -2,13 +2,35 @@ from transformers import TextDataset, DataCollatorForLanguageModeling
 from transformers import Trainer, TrainingArguments, GPT2LMHeadModel
 from transformers import GPT2Config, GPT2Tokenizer
 from transformers.trainer_callback import TrainerCallback
+from transformers import GPT2Tokenizer
+
+import requests
+import ssl
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+
+
+class NoSSLAdapter(HTTPAdapter):
+    def init_poolmanager(self, *args, **kwargs):
+        context = ssl._create_unverified_context()
+        kwargs["ssl_context"] = context
+        return super(NoSSLAdapter, self).init_poolmanager(*args, **kwargs)
+
 
 class PrintCallback(TrainerCallback):
     def on_log(self, args: TrainingArguments, state, control, logs=None, **kwargs):
-        print(f"Epoch: {state.epoch} Iteration: {state.global_step} Loss: {state.loss}")
+        print(
+            f"Epoch: {state.epoch} Iteration: {state.global_step} Loss: {state.loss}")
 
-# Initialize tokenizer
-tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+
+session = requests.Session()
+retry = Retry(connect=3, backoff_factor=0.5)
+adapter = NoSSLAdapter(max_retries=retry)
+session.mount('https://', adapter)
+
+# Initialize tokenizer with no ssl
+tokenizer = GPT2Tokenizer.from_pretrained(
+    "gpt2", cache_dir="./cache", use_fast=True, session=session)
 
 # Create a text dataset
 dataset = TextDataset(
